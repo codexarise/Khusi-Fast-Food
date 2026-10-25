@@ -1,0 +1,731 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fffaf5">
+<title>Khusi Fast Food | Taste the Happiness</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+window.addEventListener("load", function () {
+  if (window.emailjs) {
+    emailjs.init({ publicKey: "xQ09nu89JDGgHyIfI" });
+  }
+});
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+
+:root{
+  --orange:#ff682c;
+  --dark:#211914;
+  --cream:#fffaf5;
+  --muted:#8a7c70;
+  --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:'DM Sans',Arial,sans-serif;
+  color:var(--dark);background:var(--cream);overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.container{width:min(1280px,92%);margin:auto}
+
+header{
+  height:82px;background:rgba(255,250,245,.96);
+  backdrop-filter:blur(16px);position:sticky;top:0;z-index:100;
+  border-bottom:1px solid #eee5db;
+}
+.nav{height:100%;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-icon{
+  width:44px;height:44px;border-radius:14px;background:var(--orange);
+  color:white;display:grid;place-items:center;font-size:23px;
+}
+.logo h2{font-size:19px;font-weight:800;letter-spacing:-.7px}
+.logo h2 span{color:var(--orange)}
+.logo small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:3px}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:13px;font-weight:600;color:#62564d;transition:.25s}
+.nav-links a:hover{color:var(--orange)}
+.nav-label{background:var(--dark);color:white;padding:12px 18px;border-radius:30px;font-size:12px;font-weight:700}
+.menu-toggle{display:none;background:none;border:0;font-size:27px}
+
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  gap:65px;padding:95px 0 105px;min-height:650px;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;color:var(--orange);
+  font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+}
+.eyebrow:before{content:"";width:26px;height:2px;background:var(--orange)}
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(43px,5.4vw,76px);line-height:1.08;
+  letter-spacing:-2px;margin-top:24px;font-weight:800;
+}
+.hero h1 span{color:var(--orange);font-style:italic}
+.hero-description{color:var(--muted);font-size:15px;line-height:1.9;max-width:440px;margin:24px 0 30px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  padding:15px 23px;border-radius:10px;font-size:13px;font-weight:700;
+  display:inline-flex;align-items:center;gap:12px;transition:transform .25s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--orange);color:white;border:0}
+.btn-secondary{border:1px solid #e5d9ce;background:transparent}
+.hero-note{display:flex;align-items:center;gap:12px;margin-top:36px;color:var(--muted);font-size:12px}
+.note-dot{width:9px;height:9px;background:#46a56b;border-radius:50%;box-shadow:0 0 0 5px #46a56b19}
+.hero-visual{position:relative;padding:0 0 30px 25px}
+.hero-image{width:100%;height:530px;object-fit:cover;border-radius:170px 170px 24px 24px;display:block}
+.image-label{position:absolute;left:0;bottom:0;background:white;padding:18px 23px;border-radius:16px;box-shadow:0 12px 45px #3e241316}
+.image-label strong{display:block;font-size:14px}
+.image-label small{display:block;color:var(--muted);margin-top:5px;font-size:11px}
+.image-number{
+  position:absolute;right:-12px;top:25px;width:94px;height:94px;border-radius:50%;
+  background:var(--orange);color:white;display:grid;place-items:center;text-align:center;
+  font-family:'Playfair Display',Georgia,serif;font-size:18px;line-height:1.3;transform:rotate(10deg);
+}
+.features{background:var(--dark);color:white;padding:30px 0}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature{display:flex;align-items:center;justify-content:center;gap:14px;padding:8px}
+.feature-icon{font-size:25px}
+.feature strong{font-size:13px;display:block}
+.feature small{color:#c0b2a7;font-size:11px;display:block;margin-top:5px}
+
+.section{padding:110px 0}
+.section-heading{text-align:center;margin-bottom:42px}
+.section-heading .eyebrow{justify-content:center}
+.section-heading h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4vw,48px);margin-top:17px;letter-spacing:-1px}
+.section-heading p{font-size:13px;color:var(--muted);line-height:1.8;margin-top:12px}
+.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:35px}
+.filter{background:white;border:1px solid #eee2d7;padding:11px 19px;border-radius:30px;font-size:12px;font-weight:700;color:#74665b;transition:.2s}
+.filter:hover,.filter.active{background:var(--dark);color:white;border-color:var(--dark)}
+.food-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.food-card{background:white;padding:14px;border-radius:22px;border:1px solid #f1e8df;transition:transform .3s,box-shadow .3s}
+.food-card:hover{transform:translateY(-7px);box-shadow:0 18px 40px #3520130d}
+.food-image-wrap{overflow:hidden;border-radius:14px;position:relative}
+.food-card img{display:block;width:100%;height:245px;object-fit:cover;transition:transform .5s}
+.food-card:hover img{transform:scale(1.06)}
+.food-category{position:absolute;top:12px;left:12px;background:#fffdf8ed;padding:7px 11px;border-radius:20px;font-size:10px;font-weight:700}
+.food-info{padding:15px 6px 10px}
+.food-info h3{font-size:17px;font-weight:800}
+.food-info p{color:var(--muted);font-size:12px;line-height:1.7;margin-top:9px}
+.food-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:18px;padding-top:15px;border-top:1px solid #f1e9e1}
+.food-price{font-size:20px;font-weight:800;color:var(--orange)}
+.food-rating{font-size:10px;color:#8b7968}
+.add-cart-btn{width:100%;margin-top:15px;padding:13px;background:var(--orange);color:white;border:0;border-radius:10px;font-weight:700}
+.add-cart-btn:active{transform:scale(.98)}
+
+.about-section{background:#f3e9dd}
+.about{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:65px;padding:85px 0}
+.about-image{height:450px;width:100%;object-fit:cover;border-radius:20px 110px 20px 20px}
+.about-copy h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4vw,48px);line-height:1.2;margin-top:18px}
+.about-copy p{font-size:14px;line-height:2;color:var(--muted);margin-top:22px}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:28px}
+.point{background:#ffffffa6;border:1px solid #e9ddd0;border-radius:12px;padding:17px}
+.point strong{font-size:12px;display:block}
+.point small{color:var(--muted);font-size:11px;display:block;margin-top:6px}
+
+.order-area{background:var(--cream)}
+.order-panel{
+  background:white;border:1px solid #f1e8df;border-radius:22px;padding:26px;
+  box-shadow:0 12px 35px #3520130b;margin:20px auto 0;
+}
+.order-panel h3{font-size:21px;margin-bottom:15px}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.cart-line,.bill-line{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #eee5db}
+.cart-line span{overflow-wrap:anywhere}
+.qty-controls{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.qty-controls button{border:0;border-radius:8px;background:var(--dark);color:white;padding:6px 11px}
+.bill-total{font-size:21px;font-weight:800;color:var(--orange);border-bottom:0}
+.order-panel label{display:block;font-size:13px;font-weight:700;margin-top:13px}
+.order-panel input,.order-panel textarea{
+  width:100%;margin-top:7px;padding:14px;border:1px solid #e5d9ce;border-radius:10px;
+  background:#fffdfa;font:inherit;outline:none;
+}
+.order-panel input:focus,.order-panel textarea:focus{border-color:var(--orange)}
+.order-panel textarea{min-height:88px;resize:vertical}
+.order-submit{width:100%;margin-top:20px;background:var(--orange);color:white;border:0;padding:16px;border-radius:11px;font-weight:800}
+.order-hint{font-size:12px;line-height:1.8;color:var(--muted);margin-top:13px}
+#delivery-status,#order-status{font-size:13px;line-height:1.7;margin-top:12px;overflow-wrap:anywhere}
+.location-actions{display:flex;gap:10px;flex-wrap:wrap}
+.location-actions button{border:0;border-radius:10px;padding:13px 17px;background:var(--orange);color:white;font-weight:700}
+.location-actions .secondary{background:var(--dark)}
+.map-link{display:inline-block;margin-top:14px;color:var(--orange);font-size:13px;font-weight:800}
+
+.location-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid #eee2d7;background:white;border-radius:24px;overflow:hidden}
+.location-content{padding:38px}
+.location-content h3{font-family:'Playfair Display',Georgia,serif;font-size:29px;margin-top:17px}
+.location-content p{font-size:13px;color:var(--muted);line-height:1.9;margin-top:15px}
+.map-placeholder{min-height:300px;background:#e9e3d8;display:grid;place-items:center;text-align:center;padding:25px}
+.map-inner{background:#fffaf1ed;padding:24px 30px;border-radius:18px}
+.map-pin{width:60px;height:60px;border-radius:50%;background:var(--orange);color:white;display:grid;place-items:center;font-size:26px;margin:0 auto 13px}
+footer{background:#19130f;color:white;padding:45px 0 25px}
+.footer-top{display:flex;justify-content:space-between;align-items:center;gap:25px;flex-wrap:wrap;padding-bottom:30px}
+footer .logo small{color:#b7a79b}
+.footer-text{color:#c4b6aa;font-size:12px;line-height:1.8}
+.footer-bottom{border-top:1px solid #ffffff1c;padding-top:22px;display:flex;justify-content:space-between;gap:15px;color:#b7a79b;font-size:11px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:800px){
+  .nav-links{display:none;position:absolute;top:81px;left:0;right:0;padding:25px 5%;background:var(--cream);border-bottom:1px solid #eee2d7;flex-direction:column;align-items:flex-start;gap:22px}
+  .nav-links.open{display:flex}
+  .menu-toggle{display:block;background:none;border:0;font-size:27px}
+  .nav-label{display:none}
+  .hero{grid-template-columns:1fr;gap:40px;padding:60px 0 70px;min-height:auto}
+  .hero-visual{width:90%;margin:auto}
+  .hero-image{height:400px}
+  .features-grid{grid-template-columns:1fr;gap:14px}
+  .feature{justify-content:flex-start;padding-left:20%}
+  .section{padding:75px 0}
+  .food-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+  .food-card img{height:185px}
+  .about{grid-template-columns:1fr;gap:35px;padding:65px 0}
+  .about-image{height:350px}
+  .location-card{grid-template-columns:1fr}
+  .order-grid{grid-template-columns:1fr}
+}
+@media(max-width:450px){
+  .container{width:92%}
+  .logo h2{font-size:16px}
+  .hero h1{font-size:45px}
+  .hero-image{height:330px}
+  .image-number{width:76px;height:76px;font-size:15px;right:-9px}
+  .food-grid{grid-template-columns:1fr}
+  .food-card img{height:225px}
+  .section-heading h2{font-size:32px}
+  .about-points{gap:10px}
+  .point{padding:13px}
+  .location-content{padding:25px}
+  .order-panel{padding:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">
+      <div class="logo-icon">🍔</div>
+      <div><h2>KHUSI <span>FAST FOOD</span></h2><small>TASTE THE HAPPINESS</small></div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a><a href="#menu">Our Menu</a>
+      <a href="#about">Our Story</a><a href="#location">Location</a>
+      <a href="#order">Order Food</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:15px">
+      <a href="#menu" class="nav-label">EXPLORE FOOD ↗</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="container hero" id="home">
+    <div class="reveal">
+      <div class="eyebrow">WELCOME TO KHUSI</div>
+      <h1>Good Food.<br>Great Taste.<br><span>Pure Khusi.</span></h1>
+      <p class="hero-description">Every bite brings a little happiness. Discover delicious favourites, fresh flavours and the food you love.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#menu">Discover Our Menu ↗</a>
+        <a class="btn btn-secondary" href="#about">Our Story</a>
+      </div>
+      <div class="hero-note"><span class="note-dot"></span><span>A little taste of happiness, every day.</span></div>
+    </div>
+    <div class="hero-visual reveal">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85" alt="Freshly prepared burger">
+      <div class="image-label"><strong>Made for food lovers</strong><small>Simple cravings. Big happiness.</small></div>
+      <div class="image-number">Good<br>Food<br>♡</div>
+    </div>
+  </section>
+
+  <div class="features">
+    <div class="container features-grid">
+      <div class="feature"><span class="feature-icon">🍅</span><div><strong>Flavourful Bites</strong><small>Full of taste and happiness</small></div></div>
+      <div class="feature"><span class="feature-icon">🍔</span><div><strong>Food for Every Mood</strong><small>Find your favourite flavours</small></div></div>
+      <div class="feature"><span class="feature-icon">❤️</span><div><strong>Made for Food Lovers</strong><small>A little joy in every bite</small></div></div>
+    </div>
+  </div>
+
+  <section class="container section" id="menu">
+    <div class="section-heading reveal">
+      <div class="eyebrow">EXPLORE THE FLAVOUR</div>
+      <h2>Our Delicious Menu</h2>
+      <p>From crispy favourites to cheesy delights,<br>there is something for every craving.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="filter active" data-category="All">All Favourites</button>
+      <button class="filter" data-category="Chowmein">chowmein</button>
+      <button class="filter" data-category="Roll">Roll</button>
+      <button class="filter" data-category="chilli">chilli</button
+      <button class="filter" data-category="veg">veg</button>
+    </div>
+    <div class="food-grid" id="foodGrid"></div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="container about">
+      <img class="about-image reveal" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=85https://unsplash.com/photos/stir-fried-noodles-with-vegetables-wEBg_pYtynw" alt="Delicious food served fresh" loading="lazy">
+      <div class="about-copy reveal">
+        <div class="eyebrow">A LITTLE ABOUT US</div>
+        <h2>Food tastes better<br>when it brings joy.</h2>
+        <p>Welcome to Khusi Fast Food, a place for people who love good food and memorable flavours. Explore our menu and discover something delicious for your next craving.</p>
+        <div class="about-points">
+          <div class="point"><strong>🍽️ Food Favourites</strong><small>Discover familiar delights</small></div>
+          <div class="point"><strong>✨ Happy Moments</strong><small>Enjoy every little bite</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" id="location">
+    <div class="section-heading reveal">
+      <div class="eyebrow">COME FIND US</div><h2>Our Location</h2>
+      <p>Khusi Fast Food · Petarwar, Bokaro, Jharkhand, India</p>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-content">
+        <div class="eyebrow">VISIT US</div>
+        <h3>Khusi Fast Food</h3>
+        <p>Petarwar, Bokaro, Jharkhand, India.<br>Delivery available within the configured 3 km radius.</p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Petarwar+Bokaro+Jharkhand" target="_blank" rel="noopener">📍 Open Petarwar on Google Maps ↗</a>
+      </div>
+      <a class="map-placeholder" href="https://www.google.com/maps/search/?api=1&query=Petarwar+Bokaro+Jharkhand" target="_blank" rel="noopener">
+        <div class="map-inner"><div class="map-pin">⌖</div><strong>Petarwar, Jharkhand</strong><p style="font-size:12px;margin-top:7px;color:#8a7c70">Open Google Maps ↗</p></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="order-area" id="order">
+    <div class="container section">
+      <div class="section-heading reveal">
+        <div class="eyebrow">ORDER YOUR FAVOURITES</div>
+        <h2>Place Your Order</h2>
+        <p>Add your food to the cart, check your delivery location and submit your order.</p>
+      </div>
+
+      <div class="order-grid">
+        <div class="order-panel">
+          <h3>🛒 Your Cart <span id="cart-count">(0)</span></h3>
+          <div id="cart-list">Your cart is empty.</div>
+          <div class="bill-line"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+          <div class="bill-line"><span>Delivery Charge</span><strong id="delivery">₹0</strong></div>
+          <div class="bill-line bill-total"><span>Total</span><span id="total">₹0</span></div>
+          <p class="order-hint">Delivery charge: ₹30 per order. Cash on Delivery.</p>
+        </div>
+
+        <div class="order-panel">
+          <h3>📍 Delivery Details</h3>
+          <p class="order-hint">Delivery is limited to 3 km from the configured restaurant coordinates. GPS permission is required.</p>
+          <div class="location-actions">
+            <button type="button" id="check-gps">Check My GPS</button>
+            <button type="button" class="secondary" id="open-map">Open Map</button>
+          </div>
+          <div id="delivery-status" role="status" aria-live="polite">Location not checked yet.</div>
+
+          <form id="order-form">
+            <label for="customer-name">Full Name</label>
+            <input id="customer-name" required maxlength="80" autocomplete="name" placeholder="Enter your name">
+
+            <label for="customer-phone">Mobile Number</label>
+            <input id="customer-phone" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" required autocomplete="tel" placeholder="10-digit mobile number">
+
+            <label for="customer-address">Full Delivery Address</label>
+            <textarea id="customer-address" required maxlength="500" autocomplete="street-address" placeholder="House, street, landmark, Petarwar"></textarea>
+
+            <label for="customer-notes">Special Instructions (optional)</label>
+            <textarea id="customer-notes" maxlength="300" placeholder="Any special request"></textarea>
+
+            <div class="bill-line"><span>Payment Method</span><strong>Cash on Delivery</strong></div>
+            <button class="order-submit" id="place-order" type="submit">Place Order — ₹0</button>
+            <div id="order-status" role="status" aria-live="polite"></div>
+            <p class="order-hint">Order email request will be sent to the restaurant. Wait for restaurant confirmation before assuming the order is accepted.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <a class="logo" href="#home"><div class="logo-icon">🍔</div><div><h2>KHUSI <span>FAST FOOD</span></h2><small>TASTE THE HAPPINESS</small></div></a>
+      <p class="footer-text">Good food, great taste, pure happiness.<br>Made for food lovers, with love.</p>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Khusi Fast Food</span><a href="#home">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* EmailJS configuration */
+const EMAIL_SERVICE = "service_k9e9v6v";
+const EMAIL_TEMPLATE = "template_ceqxfj9";
+
+/*
+IMPORTANT:
+These are approximate example coordinates, not verified restaurant coordinates.
+Replace them with the exact latitude and longitude of Khusi Fast Food.
+*/
+const RESTAURANT_LAT = 23.621389;
+const RESTAURANT_LNG = 85.851333;
+
+const DELIVERY_RADIUS_KM = 3;
+const DELIVERY_CHARGE = 30;
+
+const foods = [
+  {name:"Chowmein",category:"Chowmein",price:20 ,description:"Full plate k liye quantity double kare.",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsC8X_Hsgsqe40hH3OKE7UXimtV8S-v1Rmvglwfof9Pg&s=10"},
+  {name:"Egg Roll",category:"Roll",price:40,description:"Full plate k liye quantity double kare..",image:"https://images.unsplash.com/photo-1771268494481-cc301a1b7505?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"},
+  {name:"Chicken chilli",category:"chilli",price:60,description:"Full plate k liye quantity double kare..",image:"https://images.unsplash.com/photo-1710508774177-7ac2f3492675?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"},
+  {name:"Veg Manchurian",category:"veg",price:30,description:"Full plate k liye quantity double kare..",image:"https://images.unsplash.com/photo-1572363644253-3daacc7acd0d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"},
+  {name:"Egg Chowmein",category:"Chowmein",price:80,description:"Full plate k liye quantity double kare..",image:"https://images.unsplash.com/photo-1752924349474-d717ed874d98?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"},
+  {name:"Chicken Roll",category:"Roll",price:80,description:"",image:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"}
+];
+
+const cart = new Map();
+let gpsLocation = null;
+let orderSending = false;
+let lastAttempt = 0;
+
+const $ = id => document.getElementById(id);
+const money = value => "₹" + Number(value).toLocaleString("en-IN");
+const grid = $("foodGrid");
+
+function renderFood(category = "All") {
+  const list = category === "All" ? foods : foods.filter(food => food.category === category);
+
+  grid.innerHTML = list.map(food => `
+    <article class="food-card reveal visible">
+      <div class="food-image-wrap">
+        <img src="${food.image}" alt="${food.name}" loading="lazy">
+        <span class="food-category">${food.category}</span>
+      </div>
+      <div class="food-info">
+        <h3>${food.name}</h3>
+        <p>${food.description}</p>
+        <div class="food-bottom">
+          <span class="food-price">${money(food.price)}</span>
+          <span class="food-rating"style="font-size:20px">half</span>
+        </div>
+        <button class="add-cart-btn" type="button" data-add="${foods.indexOf(food)}">+ Add to Cart</button>
+      </div>
+    </article>
+  `).join("");
+}
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+    renderFood(button.dataset.category);
+  });
+});
+
+const navLinks = $("navLinks");
+const menuToggle = $("menuToggle");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.textContent = isOpen ? "✕" : "☰";
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+$("year").textContent = new Date().getFullYear();
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+} else {
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+}
+
+function subtotal() {
+  let sum = 0;
+  cart.forEach((qty, index) => sum += foods[index].price * qty);
+  return sum;
+}
+
+function delivery() {
+  return subtotal() > 0 ? DELIVERY_CHARGE : 0;
+}
+
+function total() {
+  return subtotal() + delivery();
+}
+
+function renderCart() {
+  const list = $("cart-list");
+  list.replaceChildren();
+
+  let itemCount = 0;
+
+  if (!cart.size) {
+    list.textContent = "Your cart is empty.";
+  } else {
+    cart.forEach((qty, index) => {
+      itemCount += qty;
+      const food = foods[index];
+      const row = document.createElement("div");
+      row.className = "cart-line";
+
+      const name = document.createElement("span");
+      name.textContent = `${food.name} × ${qty} — ${money(food.price * qty)}`;
+
+      const controls = document.createElement("div");
+      controls.className = "qty-controls";
+
+      const minus = document.createElement("button");
+      minus.type = "button";
+      minus.textContent = "−";
+      minus.setAttribute("aria-label", "Remove one " + food.name);
+      minus.addEventListener("click", () => changeQuantity(index, -1));
+
+      const qtyText = document.createElement("span");
+      qtyText.textContent = qty;
+
+      const plus = document.createElement("button");
+      plus.type = "button";
+      plus.textContent = "+";
+      plus.setAttribute("aria-label", "Add one " + food.name);
+      plus.addEventListener("click", () => changeQuantity(index, 1));
+
+      controls.append(minus, qtyText, plus);
+      row.append(name, controls);
+      list.append(row);
+    });
+  }
+
+  $("cart-count").textContent = "(" + itemCount + ")";
+  $("subtotal").textContent = money(subtotal());
+  $("delivery").textContent = money(delivery());
+  $("total").textContent = money(total());
+  $("place-order").textContent = "Place Order — " + money(total());
+}
+
+function changeQuantity(index, change) {
+  if (orderSending) return;
+
+  const next = (cart.get(index) || 0) + change;
+  if (next <= 0) cart.delete(index);
+  else cart.set(index, next);
+
+  renderCart();
+}
+
+grid.addEventListener("click", event => {
+  const button = event.target.closest("[data-add]");
+  if (!button || orderSending) return;
+
+  const index = Number(button.dataset.add);
+  if (!Number.isInteger(index) || !foods[index]) return;
+
+  cart.set(index, (cart.get(index) || 0) + 1);
+  renderCart();
+});
+
+function distanceKm(lat1, lon1, lat2, lon2) {
+  const rad = degrees => degrees * Math.PI / 180;
+  const dLat = rad(lat2 - lat1);
+  const dLon = rad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(rad(lat1)) * Math.cos(rad(lat2)) *
+    Math.sin(dLon / 2) ** 2;
+  return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function isWithinDeliveryRadius() {
+  if (!gpsLocation) return false;
+  return distanceKm(
+    RESTAURANT_LAT, RESTAURANT_LNG,
+    gpsLocation.lat, gpsLocation.lng
+  ) <= DELIVERY_RADIUS_KM;
+}
+
+function deliveryMessage(message, success = false) {
+  $("delivery-status").textContent = message;
+  $("delivery-status").style.color = success ? "#18864b" : "#b42318";
+}
+
+$("check-gps").addEventListener("click", () => {
+  if (!navigator.geolocation) {
+    deliveryMessage("GPS is not supported by this browser.");
+    return;
+  }
+
+  deliveryMessage("Checking your location…");
+
+  navigator.geolocation.getCurrentPosition(position => {
+    gpsLocation = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+
+    const distance = distanceKm(
+      RESTAURANT_LAT, RESTAURANT_LNG,
+      gpsLocation.lat, gpsLocation.lng
+    );
+
+    if (distance <= DELIVERY_RADIUS_KM) {
+      deliveryMessage(
+        `Your location is within the configured radius (${distance.toFixed(2)} km straight-line distance). Road distance may differ.`,
+        true
+      );
+    } else {
+      deliveryMessage(
+        `Your location is ${distance.toFixed(2)} km away. Delivery is limited to 3 km.`
+      );
+    }
+  }, () => {
+    deliveryMessage("Location access failed. Allow browser location permission and try again.");
+  }, {enableHighAccuracy:true, timeout:15000, maximumAge:0});
+});
+
+$("open-map").addEventListener("click", () => {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=Petarwar+Bokaro+Jharkhand",
+    "_blank",
+    "noopener"
+  );
+});
+
+function orderStatus(message, success = false) {
+  const box = $("order-status");
+  box.textContent = message;
+  box.style.color = success ? "#176b36" : "#b42318";
+  box.style.background = success ? "#e8f8ee" : "#fff0ed";
+  box.style.padding = "12px";
+  box.style.borderRadius = "10px";
+}
+
+$("order-form").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (orderSending) return;
+
+  if (!window.emailjs) {
+    orderStatus("Email service load nahi hui. Internet check karke page reload karo.");
+    return;
+  }
+
+  if (!cart.size) {
+    orderStatus("Please pehle menu se food add karo.");
+    return;
+  }
+
+  if (!gpsLocation) {
+    orderStatus("Please pehle Check My GPS dabao.");
+    return;
+  }
+
+  if (!isWithinDeliveryRadius()) {
+    orderStatus("Sorry, delivery is only available within 3 km of the configured restaurant location.");
+    return;
+  }
+
+  const name = $("customer-name").value.trim();
+  const phone = $("customer-phone").value.trim();
+  const address = $("customer-address").value.trim();
+  const notes = $("customer-notes").value.trim();
+
+  if (!name || !/^[6-9][0-9]{9}$/.test(phone) || !address) {
+    orderStatus("Please enter your name, valid 10-digit phone number and complete address.");
+    return;
+  }
+
+  if (Date.now() - lastAttempt < 5000) {
+    orderStatus("Please wait a few seconds before trying again.");
+    return;
+  }
+
+  const sub = subtotal();
+  const charge = delivery();
+  const grandTotal = total();
+
+  const orderDetails = [...cart.entries()].map(([index, qty]) => {
+    const food = foods[index];
+    return `${food.name} × ${qty} = ${money(food.price * qty)}`;
+  }).join("\n");
+
+  const templateParams = {
+    customer_name: name,
+    customer_phone: phone,
+    delivery_address: address,
+    order_details: orderDetails + (notes ? "\nSpecial instructions: " + notes : ""),
+    subtotal: money(sub),
+    delivery_charge: money(charge),
+    total_amount: money(grandTotal),
+    payment_method: "Cash on Delivery"
+  };
+
+  orderSending = true;
+  lastAttempt = Date.now();
+  $("place-order").disabled = true;
+  orderStatus("Sending your order request to the restaurant…", true);
+
+  try {
+    const response = await emailjs.send(
+      EMAIL_SERVICE,
+      EMAIL_TEMPLATE,
+      templateParams
+    );
+
+    if (!response || response.status < 200 || response.status >= 300) {
+      throw new Error("Email service did not confirm the request.");
+    }
+
+    orderStatus(
+      "Order email request sent successfully. Please wait for the restaurant to confirm your order.",
+      true
+    );
+
+    cart.clear();
+    renderCart();
+    $("order-form").reset();
+
+  } catch (error) {
+    console.error("EmailJS order error:", error);
+    orderStatus("Order email could not be confirmed. Check your internet, EmailJS IDs, template variables and recipient Gmail. Check your Inbox before retrying.");
+  } finally {
+    orderSending = false;
+    $("place-order").disabled = false;
+    $("place-order").textContent = "Place Order — " + money(total());
+  }
+});
+
+renderFood();
+renderCart();
+</script>
+</body>
+</html>
